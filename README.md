@@ -1,2 +1,2 @@
 # kata
-A collection of various applications I have done as a programming excersise.
+A collection of various applications I have written as a programming excersise or for various other mad scientist experiments.
