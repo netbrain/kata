@@ -154,14 +154,14 @@ public class ApplicationIntegrationTest extends IntegrationTest {
         Customer customer = createCustomer();
         List<Film> films = createFilms();
 
-        //30 days ago
+        //7 days ago
         Date date = Date.from(
                 LocalDate.now()
                         .minusDays(7)
                         .atStartOfDay(ZoneId.systemDefault()).toInstant()
         );
 
-        //Rental with 14 days expectancy
+        //Rental with 5 days expectancy
         Rental rental = new RentalTestData()
                 .withCustomer(customer)
                 .withFilms(5,films)
