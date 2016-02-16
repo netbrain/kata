@@ -38,6 +38,7 @@ The following is the exposed API:
 Invoking any non-existent API endpoints will result in a 400 Bad Request text/plain response with a message detailing that the endpoint doesn't exist and gives a list of the available endpoints.
 
  **[GET] /customers**
+ 
  **[GET] /customers/:id**
 
  Returns either a list of customers or a single customer. A customer payload looks like this:
@@ -54,6 +55,7 @@ Invoking any non-existent API endpoints will result in a 400 Bad Request text/pl
     }
 
 **[GET] /films**
+
 **[GET] /films/:id**
 
 Returns either a list of films or a single film. A film payload looks like this:
@@ -91,6 +93,7 @@ Returns either a list of rentals or a single rental. A rental is an object detai
 
 
 **[POST] /rentals**
+
 This endpoint is used when a customer wants to rent one or more films for a given duration. This will create a new rental and use the X-Customer header to assign it to the customer. This will reserve the requested films if possible and add bonus points to the customer.
 
     $ curl -v -s -H "X-Customer: 0" -H "Content-Type: application/json" -X POST -d '{"films":[2,3], "numDays": 3}' 127.0.0.1:8080/rentals | prettyj
@@ -127,6 +130,7 @@ This endpoint is used when a customer wants to rent one or more films for a give
 
 
 **[DELETE] /rentals/:id**
+
 This endpoint is intended to be used for a customer returning movies rented. This doesn't actually delete the rental object, instead it updates it with surcharge data which details if the customer has to pay additional fees for being overdue. Additionally it releases the rented movies back into availability for other customers.
 
     $ curl -v -s -H "X-Customer: 0" -H "Content-Type: application/json" -X DELETE 127.0.0.1:8080/rentals/0 | prettyj
