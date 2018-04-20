@@ -1,0 +1,8 @@
+{
+  "name": "gpe-marker",
+  "version": "1.0.0",
+  "description": "nudge gpe kata",
+  "main": "main.js",
+  "author": "Kim Eik",
+  "license": "ISC"
+}
