@@ -1,9 +1,11 @@
-== Prerequisites ==
+# Prerequisites
 
+```
 pip install -U requests
 pip install -U spacey
 python -m spacy download en
+```
 
-== Example ==
+## Example
 
-python main.py http://example.com
+`python main.py http://example.com`
