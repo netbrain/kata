@@ -1,0 +1,58 @@
+<!doctype html>
+<!--
+Copyright 2018 The Go Authors. All rights reserved.
+Use of this source code is governed by a BSD-style
+license that can be found in the LICENSE file.
+-->
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Go wasm</title>
+</head>
+
+<body>
+	<script src="wasm_exec.js"></script>
+	<script>
+		if (!WebAssembly.instantiateStreaming) { // polyfill
+			WebAssembly.instantiateStreaming = async (resp, importObject) => {
+				const source = await (await resp).arrayBuffer();
+				return await WebAssembly.instantiate(source, importObject);
+			};
+		}
+
+		(async function(){
+		    const go = new Go()
+			const { instance } = await WebAssembly.instantiateStreaming(fetch("test.wasm"),go.importObject)
+			go.run(instance)
+            console.log(TestComponent)
+			document.getElementById("main").style.display = 'block';
+
+			var start = new Date()
+			console.log("JS")
+            console.log(fib(44));
+            console.log((new Date()-start)/1000+"s")
+
+            console.log(gofib(44))
+		})()
+
+        var fib = function(num) {
+            var result = 0;
+            if (num < 2) {
+                result = num;
+            } else {
+                result = fib(num-1) + fib(num-2);
+            }
+
+            return result;
+        }
+
+
+
+	</script>
+	<main id="main" style="display:none;">
+		<button onclick="time()">What time is it?</button>
+    </main>
+</body>
+
+</html>
