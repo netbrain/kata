@@ -28,24 +28,30 @@ license that can be found in the LICENSE file.
             console.log(TestComponent)
 			document.getElementById("main").style.display = 'block';
 
-			var start = new Date()
-			console.log("JS")
-            console.log(fib(44));
+            var start = new Date()
+            console.log("JS ITER")
+            var f = 43
+            console.log(fib(f));
             console.log((new Date()-start)/1000+"s")
 
-            console.log(gofib(44))
+            console.log(gofib(f))
 		})()
 
-        var fib = function(num) {
-            var result = 0;
-            if (num < 2) {
-                result = num;
-            } else {
-                result = fib(num-1) + fib(num-2);
-            }
 
-            return result;
-        }
+		fib = function(n) {
+            if(n <= 1) {
+                return n;
+            }
+            var fib = 1;
+            var prevFib = 1;
+
+            for(var i=2; i<n; i++) {
+                var temp = fib;
+                fib+= prevFib;
+                prevFib = temp;
+            }
+            return fib;
+		}
 
 
 

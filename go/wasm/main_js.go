@@ -34,6 +34,7 @@ func main()  {
 
 	js.Global().Set("time",alertTimeCB)
 
+
 	fibCB := js.NewCallback(fibJs)
 	defer fibCB.Release()
 
@@ -46,21 +47,27 @@ func alertTime(args []js.Value){
 	js.Global().Get("alert").Invoke(time.Now().String())
 }
 
+
 func fibJs(args []js.Value){
 	start := time.Now()
-	fmt.Println("GO")
+	fmt.Println("GO ITER")
 	fmt.Println(fib(args[0].Int()))
 	fmt.Println(time.Now().Sub(start).String())
 }
 
-func fib(num int) int {
-	result := 0
-	if num < 2 {
-		result = num
-	} else {
-		result = fib(num-1) + fib(num-2)
+func fib(n int) int {
+	if n <= 1 {
+		return n
 	}
 
-	return result
+	fib := 1
+	prevFib := 1
+
+	for i:= 2; i<n; i++ {
+		temp := fib
+		fib+= prevFib
+		prevFib = temp
+	}
+	return fib
 }
 
